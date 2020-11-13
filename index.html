@@ -1,0 +1,679 @@
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Image Filters on the Web</title>
+    
+        <script src="http://www.dukelearntoprogram.com/course1/common/js/image/SimpleImage.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"
+              rel="stylesheet"
+              type="text/css"/>
+    
+    
+    
+    
+    </head>
+    <body>
+    
+    <div class="single-page">
+    
+        <div class="panel" style="width: 1050px;">
+            <div class="header tab-header">
+                <span class="tab-title">Steganography:</span>
+                <ul class="tab-list">
+                    <li class="tab-item active">Hide Image</li>
+                    <li class="tab-item">Show Image</li>
+                </ul>
+    
+            </div>
+            <div class="panel-content tab-content active">
+    
+                <div class="inner inner-left-margin inner-right-margin">
+                    <div class="card" id="card1"><i class="canvas-icon material-icons" id="canvas-icon1">insert_photo</i>
+                        <canvas class="card-canvas" id="canvas1" style="height: 200px;"></canvas>
+                        <input class="hidden-finput" id="finput1" onchange="uploadFile1();clearIcon1();" type="file"/>
+                        <input class="btn btn-secondary load-image color-info"
+                               onclick="document.getElementById('finput1').click();" type="button"
+                               value="Upload Image"/>
+                        <input class="btn btn-secondary reset-image color-danger" onclick="clearImage1();" type="button"
+                               value="Clear Image"/>
+    
+                    </div>
+                    <div class="card" id="card2"><i class="canvas-icon material-icons" id="canvas-icon2">insert_photo</i>
+                        <canvas class="card-canvas" id="canvas2" style="height: 200px;"></canvas>
+                        <input class="hidden-finput" id="finput2" onchange="uploadFile2();clearIcon2();" type="file"/>
+                        <input class="btn btn-secondary load-image color-info"
+                               onclick="document.getElementById('finput2').click();" type="button"
+                               value="Upload Image"/>
+                        <input class="btn btn-secondary reset-image color-danger" onclick="clearImage2();" type="button"
+                               value="Clear Image"/>
+    
+                    </div>
+                    <div style="float: left">
+    
+    
+                        <input class="btn btn-info" onclick="doHide();" style="margin-top: 100px;"
+                               type="button" value="Hide"/>
+                    </div>
+                    <div class="card" id="card3" style="float: right;margin-right: 0;"><i
+                            class="canvas-icon material-icons" id="canvas-icon3">insert_photo</i>
+                        <canvas class="card-canvas" id="canvas3" style="height: 200px;"></canvas>
+    
+                        <input class="btn btn-secondary load-image-full color-danger" onclick="clearImage3();" type="button"
+                               value="Clear Image"/>
+    
+                    </div>
+                </div>
+            </div>
+            <div class="panel-content tab-content">
+    
+                <div class="inner inner-left-margin inner-right-margin">
+                    <div class="card" id="card4"><i class="canvas-icon material-icons" id="canvas-icon4">insert_photo</i>
+                        <canvas class="card-canvas" id="canvas4" style="height: 200px;"></canvas>
+                        <input class="hidden-finput" id="finput4" onchange="uploadFile4();clearIcon4();" type="file"/>
+                        <input class="btn btn-secondary load-image color-info"
+                               onclick="document.getElementById('finput4').click();" type="button"
+                               value="Upload Image"/>
+                        <input class="btn btn-secondary reset-image color-danger" onclick="clearImage4();" type="button"
+                               value="Clear Image"/>
+                    </div>
+                    <div style="float: left">
+    
+    
+                        <input class="btn btn-info" style="margin-top: 100px;margin-right: 28px" onclick="doShow()"
+                               type="button" value="Show"/>
+                    </div>
+                    <div class="card" id="card5"><i class="canvas-icon material-icons" id="canvas-icon5">insert_photo</i>
+                        <canvas class="card-canvas" id="canvas5" style="height: 200px;"></canvas>
+                        <input class="btn btn-secondary load-image-full color-danger" onclick="clearImage5();" type="button"
+                               value="Clear Image"/>
+    
+                    </div>
+    
+                    <div class="card" id="card6" style="float: right;margin-right: 0;"><i
+                            class="canvas-icon material-icons" id="canvas-icon6">insert_photo</i>
+                        <canvas class="card-canvas" id="canvas6" style="height: 200px;"></canvas>
+                        <input class="btn btn-secondary load-image-full color-danger" onclick="clearImage6();" type="button"
+                               value="Clear Image"/>
+    
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    </div>
+      <script>
+      
+      
+      </script>
+    </body>
+</html>
+
+<style>
+    body {
+    background:  #e6e6ff;
+    font-family: Roboto, Helvetica, Arial, sans-serif;
+    font-size: 16px;
+}
+
+.single-page {
+    margin-top: 100px;
+
+}
+
+.panel {
+
+    margin: auto;
+    width: 85%;
+
+
+}
+
+.panel-content {
+    background: #fff;
+    box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+    border-radius: 5px;
+    padding: 35px;
+    padding-top: 80px;
+
+}
+
+.header {
+
+    background: linear-gradient(60deg, #abd0df, #afd1ec);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
+    color: black;
+    margin: 0 15px;
+    padding: 15px;
+    position: relative;
+    margin-bottom: -34px;
+    border-radius: 5px;
+    display: block;
+    z-index: 1;
+}
+
+.card {
+
+    background: linear-gradient(60deg, #abd0df, #abd0df);
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, .14), 0 7px 10px -5px rgba(156, 39, 176, .4);
+    color: black;
+    position: relative;
+    border-radius: 5px;
+    display: block;
+    z-index: 1;
+    width: 300px;
+    max-width: 300px;
+    margin-right: 30px;
+    float: left;
+}
+
+.card-canvas {
+    width: 100%;
+    border-radius: 5px 5px 0 0;
+}
+
+.inner {
+    min-height: 250px;
+    margin: auto;
+}
+
+.inner-left-margin {
+
+    margin-left: -80px;
+}
+
+.inner-right-margin {
+
+    margin-right: -80px;
+}
+
+.btn {
+    border: none;
+    cursor: pointer;
+    margin: .3125rem 1px;
+    padding: 12px 30px;
+    position: relative;
+    font-size: 12px;
+    text-align: center;
+    font-weight: 400;
+    line-height: 1.42857143;
+    white-space: nowrap;
+    will-change: box-shadow, transform;
+    touch-action: manipulation;
+    letter-spacing: 0;
+    text-transform: uppercase;
+    vertical-align: middle;
+    border-radius: 30px;
+    width: 150px;
+}
+
+.btn-secondary {
+
+
+}
+
+.btn-info {
+    color: #fff;
+    background-color: #00bcd4;
+    border-color: #00bcd4;
+    box-shadow: 0 2px 2px 0 rgba(0, 188, 212, .14), 0 3px 1px -2px rgba(0, 188, 212, .2), 0 1px 5px 0 rgba(0, 188, 212, .12);
+}
+
+.btn-success {
+    color: #fff;
+    background-color: #4caf50;
+    border-color: #4caf50;
+    box-shadow: 0 2px 2px 0 rgba(76, 175, 80, .14), 0 3px 1px -2px rgba(76, 175, 80, .2), 0 1px 5px 0 rgba(76, 175, 80, .12);
+}
+
+.btn-danger {
+    color: #fff;
+    background-color: #e6dad9;
+    border-color: #f1e9e8;
+    box-shadow: 0 2px 2px 0 rgba(244, 67, 54, .14), 0 3px 1px -2px rgba(244, 67, 54, .2), 0 1px 5px 0 rgba(244, 67, 54, .12);
+
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #f3eaf5;
+    border-color: #f1eef1;
+    box-shadow: 0 2px 2px 0 rgba(156, 39, 176, .14), 0 3px 1px -2px rgba(156, 39, 176, .2), 0 1px 5px 0 rgba(156, 39, 176, .12);
+}
+
+.btn-default {
+    color: #fff;
+    background-color: #999;
+    border-color: #999;
+    box-shadow: 0 2px 2px 0 hsla(0, 0%, 60%, .14), 0 3px 1px -2px hsla(0, 0%, 60%, .2), 0 1px 5px 0 hsla(0, 0%, 60%, .12);
+}
+
+.btn-warning {
+
+    color: #fff;
+    background-color: #ff9800;
+    border-color: #ff9800;
+    box-shadow: 0 2px 2px 0 rgba(255, 152, 0, .14), 0 3px 1px -2px rgba(255, 152, 0, .2), 0 1px 5px 0 rgba(255, 152, 0, .12);
+}
+
+.color-info {
+    color: #00bcd4;
+}
+
+.color-success {
+    color: #4caf50;
+}
+
+.color-danger {
+    color: #f44336;
+
+}
+
+.color-primary {
+    color: #dfd8e0;
+
+}
+
+.color-default {
+    color: #999;
+
+}
+
+.color-warning {
+    color: #ff9800;
+
+}
+
+
+.load-image {
+    width: 50%;
+    border-radius: 0 0 0 5px;
+    margin: 0;
+
+}
+
+.load-image-full {
+    width: 100%;
+    border-radius: 0 0 5px 5px;
+    margin: 0;
+
+}
+
+.reset-image {
+    width: calc(50% - 1px);
+    border-radius: 0 0 5px 0;
+    float: right;
+    margin: 0;
+}
+
+
+
+.tittle {
+
+    font-size: 1.125rem;
+    font-weight: 300;
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+.canvas-icon {
+    position: absolute;
+    font-size: 100px!important;
+    margin-top: 50px;
+    margin-left: 100px;
+
+}
+
+
+.hidden-finput {
+    visibility: hidden;
+    position: absolute;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+.tab-list {
+    float: left;
+    background: transparent;
+    margin: 0;
+    display: flex;
+    list-style: none;
+    padding-left: 10px;
+}
+
+.tab-title {
+    float: left;
+    margin-top: 2px;
+
+}
+
+.tab-header {
+    height: 23px;
+}
+
+.tab-item {
+    margin-right: 5px;
+    padding: 10px 15px;
+    margin-top: -8px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.tab-item.active {
+    background-color: hsla(0, 0%, 100%, .2);
+    transition: background-color .3s .2s;
+}
+</style>
+
+<script>
+    var image1;
+var image2;
+var image3;
+
+var image4;
+var image5;
+var image6;
+
+var canvas1;
+var canvas2;
+var canvas3;
+var canvas4;
+var canvas5;
+var canvas6;
+
+function preInit() {
+    canvas1 = document.getElementById('canvas1');
+    canvas2 = document.getElementById('canvas2');
+    canvas3 = document.getElementById('canvas3');
+    canvas4 = document.getElementById('canvas4');
+    canvas5 = document.getElementById('canvas5');
+    canvas6 = document.getElementById('canvas6');
+}
+
+preInit();
+
+//upload methods
+
+function uploadFile1() {
+    var fileinput = document.getElementById('finput1');
+    image1 = new SimpleImage(fileinput);
+    image1.drawTo(canvas1);
+}
+
+function uploadFile2() {
+    var fileinput = document.getElementById('finput2');
+    image2 = new SimpleImage(fileinput);
+    image2.drawTo(canvas2);
+}
+
+function uploadFile4() {
+    var fileinput = document.getElementById('finput4');
+    image4 = new SimpleImage(fileinput);
+    image4.drawTo(canvas4);
+}
+
+//control methods
+
+function imageIsLoaded1() {
+    return image1 != null;
+}
+
+function imageIsLoaded2() {
+    return image2 != null;
+}
+
+function imageIsLoaded4() {
+    return image4 != null;
+}
+
+//clear methods
+
+function clearImage1() {
+    var icon = document.getElementById('canvas-icon1');
+    icon.style = "visibility:visible;";
+    canvas1.style.height = "200px";
+    canvas1.style.opacity = 0;
+    image1 = null;
+}
+
+function clearImage2() {
+    var icon = document.getElementById('canvas-icon2');
+    icon.style = "visibility:visible;";
+    canvas2.style.height = "200px";
+    canvas2.style.opacity = 0;
+    image2 = null;
+}
+
+function clearImage3() {
+    var icon = document.getElementById('canvas-icon3');
+    icon.style = "visibility:visible;";
+    canvas3.style.height = "200px";
+    canvas3.style.opacity = 0;
+    image3 = null;
+}
+
+function clearImage4() {
+    var icon = document.getElementById('canvas-icon4');
+    icon.style = "visibility:visible;";
+    canvas4.style.height = "200px";
+    canvas4.style.opacity = 0;
+    image4 = null;
+}
+
+function clearImage5() {
+    var icon = document.getElementById('canvas-icon5');
+    icon.style = "visibility:visible;";
+    canvas5.style.height = "200px";
+    canvas5.style.opacity = 0;
+    image5 = null;
+}
+
+function clearImage6() {
+    var icon = document.getElementById('canvas-icon6');
+    icon.style = "visibility:visible;";
+    canvas6.style.height = "200px";
+    canvas6.style.opacity = 0;
+    image6 = null;
+}
+
+function clearIcon1() {
+    var icon = document.getElementById('canvas-icon1');
+    icon.style = "visibility:hidden;";
+    canvas1.style.height = "";
+    canvas1.style.opacity = 1;
+}
+
+function clearIcon2() {
+    var icon = document.getElementById('canvas-icon2');
+    icon.style = "visibility:hidden;";
+    canvas2.style.height = "";
+    canvas2.style.opacity = 1;
+}
+
+function clearIcon3() {
+    var icon = document.getElementById('canvas-icon3');
+    icon.style = "visibility:hidden;";
+    canvas3.style.height = "";
+    canvas3.style.opacity = 1;
+}
+
+function clearIcon4() {
+    var icon = document.getElementById('canvas-icon4');
+    icon.style = "visibility:hidden;";
+    canvas4.style.height = "";
+    canvas4.style.opacity = 1;
+}
+
+function clearIcon5() {
+    var icon = document.getElementById('canvas-icon5');
+    icon.style = "visibility:hidden;";
+    canvas5.style.height = "";
+    canvas5.style.opacity = 1;
+}
+
+function clearIcon6() {
+    var icon = document.getElementById('canvas-icon6');
+    icon.style = "visibility:hidden;";
+    canvas6.style.height = "";
+    canvas6.style.opacity = 1;
+}
+
+//doMethots
+
+function doHide() {
+    if (imageIsLoaded1() && imageIsLoaded2()) {
+        hideImage();
+        image3.drawTo(canvas3);	          // display image
+        clearIcon3();
+    }
+}
+
+function doShow() {
+    if (imageIsLoaded4()) {     // check if image is loaded
+        showImage();	                      // function performs the grayscale work
+        image5.drawTo(canvas5);
+        image6.drawTo(canvas6);                 // display image
+        clearIcon5();
+        clearIcon6();
+    }
+}
+
+
+//process methots
+
+function hideImage() {
+    var minWidth = image1.getWidth();
+    var minHeight = image1.getHeight();
+    if (image2.getWidth() < minWidth) {
+        minWidth = image2.getWidth();
+    }
+    if (image2.getHeight() < minHeight) {
+        minHeight = image2.getHeight();
+    }
+    var im1 = cropImage(image1, minWidth, minHeight);
+    var im2 = cropImage(image2, minWidth, minHeight);
+    im1 = chop2hide(im1);
+    im2 = shift(im2);
+    image3 = combine(im1, im2);
+}
+
+
+function cropImage(image, width, height) {
+    var cropImage = new SimpleImage(width, height);
+    for (var cropPixel of cropImage.values()) {
+        var x = cropPixel.getX();
+        var y = cropPixel.getY();
+        var pixel = image.getPixel(x, y);
+        cropPixel.setRed(pixel.getRed());
+        cropPixel.setGreen(pixel.getGreen());
+        cropPixel.setBlue(pixel.getBlue());
+    }
+    return cropImage;
+}
+
+
+function chop2hide(image) {
+    var resultImage = new SimpleImage(image.getWidth(), image.getHeight());
+    for (var pixel of image.values()) {
+        var x = pixel.getX();
+        var y = pixel.getY();
+        var pixel2 = resultImage.getPixel(x, y);
+        pixel2.setRed(clearBits(pixel.getRed()));
+        pixel2.setGreen(clearBits(pixel.getGreen()));
+        pixel2.setBlue(clearBits(pixel.getBlue()));
+    }
+    return resultImage;
+}
+
+function shift(image) {
+    for (var pixel of image.values()) {
+        pixel.setRed(pixel.getRed() / 16);
+        pixel.setGreen(pixel.getGreen() / 16);
+        pixel.setBlue(pixel.getBlue() / 16);
+    }
+    return image;
+
+}
+
+function combine(im1, im2) {
+    var resultImage = new SimpleImage(im1.getWidth(), im1.getHeight());
+    for (var pixel1 of im1.values()) {
+        var x = pixel1.getX();
+        var y = pixel1.getY();
+        var pixel2 = im2.getPixel(x, y);
+        var resultPixel = resultImage.getPixel(x, y);
+        resultPixel.setRed(pixel1.getRed() + pixel2.getRed());
+        resultPixel.setGreen(pixel1.getGreen() + pixel2.getGreen());
+        resultPixel.setBlue(pixel1.getBlue() + pixel2.getBlue());
+    }
+    return resultImage;
+}
+
+function clearBits(colorval) {
+    return Math.floor(colorval / 16) * 16;
+}
+
+
+function showImage() {
+    var width = image4.getWidth();
+    var height = image4.getHeight();
+    image5 = new SimpleImage(width, height);
+    image6 = new SimpleImage(width, height);
+    image5 = chop2hide(image4);
+    image6 = leftShift(image4);
+}
+
+function leftShift(image) {
+    for (var pixel of image.values()) {
+        pixel.setRed((pixel.getRed() - clearBits(pixel.getRed())) * 16);
+        pixel.setGreen((pixel.getGreen() - clearBits(pixel.getGreen())) * 16);
+        pixel.setBlue((pixel.getBlue() - clearBits(pixel.getBlue())) * 16);
+    }
+    return image;
+}
+
+var tabItems = document.getElementsByClassName('tab-item');
+var tabContents = document.getElementsByClassName('tab-content');
+
+function tabClick(index) {
+    for (var tabitem of tabItems) {
+        tabitem.classList.remove('active');
+    }
+    for (var tabContent of tabContents) {
+        tabContent.classList.remove('active');
+    }
+    tabItems[index].classList.add('active');
+    tabContents[index].classList.add('active');
+}
+
+function preInit2() {
+    tabItems[0].onclick = function () {
+        tabClick(0);
+    };
+    tabItems[1].onclick = function () {
+        tabClick(1);
+    };
+}
+
+preInit2();
+
+</script>
